@@ -1,12 +1,11 @@
-import { AuthProvider } from "./context/AuthContext"; // Verifica la ruta
 import React from 'react';
-import AppRouter from './routes/AppRouter';
+import AppRouter from './routes/AppRouter';  // Ruta correcta hacia AppRouter.jsx
 
 function App() {
   return (
-    <AuthProvider>
+    <div>
       <AppRouter />
-    </AuthProvider>
+    </div>
   );
 }
 
