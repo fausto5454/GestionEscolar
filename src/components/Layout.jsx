@@ -2,17 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { motion } from "framer-motion";
-import {
-  Home,
-  Users,
-  FileText,
-  BookOpen,
-  FileCheck,
-  ClipboardList,
-  FilePlus,
-  LogOut,
-  ArrowLeftCircle // <-- IMPORTACIÓN AÑADIDA
-} from "lucide-react";
+import { Home, Users, FileText, BookOpen, FileCheck, ClipboardList, FilePlus, LogOut, ArrowLeftCircle, Menu } from "lucide-react"; // Añadido el ícono Menu
 
 function Layout({ children }) {
   const { user, logout } = useAuth();
@@ -55,6 +45,14 @@ function Layout({ children }) {
         transition={{ type: "spring", stiffness: 100 }}
         className="bg-green-700 text-white p-4 shadow-xl overflow-hidden"
       >
+        {/* Botón hamburguesa visible solo en pantallas pequeñas */}
+        <button
+          onClick={toggleSidebar}
+          className="lg:hidden p-2 bg-gray-700 rounded-full text-white absolute top-4 right-4"
+        >
+          <Menu size={24} />
+        </button>
+
         <div className="flex justify-between items-center mb-6">
           {!isCollapsed && <h2 className="text-2xl font-bold">Gestión Escolar</h2>}
         </div>
@@ -74,7 +72,7 @@ function Layout({ children }) {
         </ul>
 
         <button
-          onClick={toggleSidebar}
+          onClick={logout}
           className="mt-10 flex items-center space-x-2 px-4 py-2 bg-red-500 hover:bg-yellow-500 rounded-2xl text-white w-full"
         >
           <LogOut size={18} />
