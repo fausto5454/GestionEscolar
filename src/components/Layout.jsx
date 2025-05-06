@@ -56,7 +56,7 @@ function Layout({ children }) {
       <motion.aside
         animate={{ width: isCollapsed ? 72 : 256 }}
         transition={{ type: "spring", stiffness: 100 }}
-        className="bg-green-700 text-white p-4 shadow-xl overflow-hidden"
+        className="bg-green-700 text-white p-4 shadow-xl overflow-hidden h-screen mt-4"
       >
         {/* Botón hamburguesa visible solo en dispositivos móviles */}
         <div className="block lg:hidden">
