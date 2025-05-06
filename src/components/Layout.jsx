@@ -2,13 +2,26 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { motion } from "framer-motion";
-import { Home, Users, FileText, BookOpen, FileCheck, ClipboardList, FilePlus, LogOut, ArrowLeftCircle, Menu } from "lucide-react"; // Añadido el ícono Menu
+import {
+  Home,
+  Users,
+  FileText,
+  BookOpen,
+  FileCheck,
+  ClipboardList,
+  FilePlus,
+  LogOut,
+  ArrowLeftCircle,
+  Menu, // <-- ICONO DEL BOTÓN HAMBURGUESA
+} from "lucide-react";
 
 function Layout({ children }) {
   const { user, logout } = useAuth();
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Nuevo estado para controlar la visibilidad del menú en móvil
 
   const toggleSidebar = () => setIsCollapsed(!isCollapsed);
+  const toggleMobileMenu = () => setIsMenuOpen(!isMenuOpen); // Función para controlar el menú en móvil
 
   const menu = {
     admin: [
@@ -45,52 +58,56 @@ function Layout({ children }) {
         transition={{ type: "spring", stiffness: 100 }}
         className="bg-green-700 text-white p-4 shadow-xl overflow-hidden"
       >
-        {/* Botón hamburguesa visible solo en pantallas pequeñas */}
-        <button
-          onClick={toggleSidebar}
-          className="lg:hidden p-2 bg-gray-700 rounded-full text-white absolute top-4 right-4"
-        >
-          <Menu size={24} />
-        </button>
-
-        <div className="flex justify-between items-center mb-6">
-          {!isCollapsed && <h2 className="text-2xl font-bold">Gestión Escolar</h2>}
+        {/* Botón hamburguesa visible solo en dispositivos móviles */}
+        <div className="block lg:hidden">
+          <button
+            onClick={toggleMobileMenu}
+            className="text-white p-2"
+          >
+            <Menu size={24} /> {/* Icono del menú hamburguesa */}
+          </button>
         </div>
 
-        <ul className="space-y-4">
-          {currentMenu.map((item, i) => (
-            <li key={i}>
-              <Link
-                to={item.path}
-                className="flex items-center space-x-2 hover:text-indigo-200 transition-colors"
-              >
-                <span>{item.icon}</span>
-                {!isCollapsed && <span>{item.label}</span>}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {/* Menú lateral para dispositivos grandes */}
+        <div className={`lg:block ${isMenuOpen ? "block" : "hidden"} lg:flex lg:flex-col`}>
+          <div className="flex justify-between items-center mb-6">
+            {!isCollapsed && <h2 className="text-2xl font-bold">Gestión Escolar</h2>}
+          </div>
 
-        <button
-          onClick={logout}
-          className="mt-10 flex items-center space-x-2 px-4 py-2 bg-red-500 hover:bg-yellow-500 rounded-2xl text-white w-full"
-        >
-          <LogOut size={18} />
-          {!isCollapsed && <span>{isCollapsed ? "Abrir menú" : "Cerrar menú"}</span>}
-        </button>
+          <ul className="space-y-4">
+            {currentMenu.map((item, i) => (
+              <li key={i}>
+                <Link
+                  to={item.path}
+                  className="flex items-center space-x-2 hover:text-indigo-200 transition-colors"
+                >
+                  <span>{item.icon}</span>
+                  <span className="text-sm sm:text-base lg:text-lg">{!isCollapsed && item.label}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-        {/* BOTÓN DE VOLVER AL LOGIN */}
-        <Link
-          to="/login"
-          className="mt-4 flex items-center space-x-2 px-4 py-2 bg-gray-800 hover:bg-yellow-500 rounded-2xl text-white w-full"
-        >
-          <ArrowLeftCircle size={18} />
-          {!isCollapsed && <span>Volver al login</span>}
-        </Link>
+          <button
+            onClick={toggleSidebar}
+            className="mt-10 flex items-center space-x-2 px-4 py-2 bg-red-500 hover:bg-yellow-500 rounded-2xl text-white w-full"
+          >
+            <LogOut size={18} />
+            {!isCollapsed && <span>{isCollapsed ? "Abrir menú" : "Cerrar menú"}</span>}
+          </button>
 
+          {/* BOTÓN DE VOLVER AL LOGIN */}
+          <Link
+            to="/login"
+            className="mt-4 flex items-center space-x-2 px-4 py-2 bg-gray-800 hover:bg-yellow-500 rounded-2xl text-white w-full"
+          >
+            <ArrowLeftCircle size={18} />
+            {!isCollapsed && <span className="text-sm sm:text-base lg:text-lg">Volver al login</span>}
+          </Link>
+        </div>
       </motion.aside>
 
-      <main className="flex-1 p-6 bg-gray-50">{children}</main>
+      <main className="flex-1 p-4 bg-gray-50">{children}</main>
     </div>
   );
 }
