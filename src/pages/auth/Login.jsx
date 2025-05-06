@@ -31,7 +31,7 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-400 to-yellow-200">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-200 to-yellow-200">
       <div className="w-full max-w-md bg-white p-8 rounded-4xl shadow-lg border-4 border-transparent hover:border-green-300 transition-all duration-300">
         <div className="flex justify-center mb-6">
           <img

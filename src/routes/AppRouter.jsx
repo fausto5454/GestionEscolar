@@ -11,7 +11,7 @@ import AuxiliarDashboard from '../pages/dashboard/AuxiliarDashboard';
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
       <Route path="/home" element={<Home />} />
       <Route path="/admin" element={<AdminDashboard />} />
       <Route path="/student" element={<StudentDashboard />} />
