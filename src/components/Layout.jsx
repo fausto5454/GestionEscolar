@@ -93,7 +93,7 @@ function Layout({ children }) {
             toggleSidebar();
             setIsMenuOpen(false);
           }}
-          className="mt-10 flex items-center space-x-2 px-4 py-2 bg-red-50 hover:bg-yellow-500 rounded-2xl text-white w-full"
+          className="mt-10 flex items-center space-x-2 px-4 py-2 bg-red-600 hover:bg-blue-800 rounded-2xl text-white w-full"
         >
           <LogOut size={18} />
           <span>{isCollapsed ? "Abrir menú" : "Cerrar menú"}</span>
@@ -136,7 +136,7 @@ function Layout({ children }) {
 
         <button
           onClick={toggleSidebar}
-          className="mt-10 flex items-center space-x-2 px-4 py-2 bg-red-500 hover:bg-yellow-500 rounded-2xl text-white w-full"
+          className="mt-10 flex items-center space-x-2 px-4 py-2 bg-red-600 hover:bg-blue-800 rounded-2xl text-white w-full"
         >
           <LogOut size={18} />
           {!isCollapsed && <span>Cerrar menú</span>}
@@ -151,7 +151,7 @@ function Layout({ children }) {
         </Link>
       </motion.aside>
 
-      <main className="flex-1 p-1 bg-gray-50">{children}</main>
+      <main className="flex-1 p-2 bg-gray-50">{children}</main>
     </div>
   );
 }
