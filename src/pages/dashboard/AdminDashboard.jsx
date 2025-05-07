@@ -10,11 +10,11 @@ function AdminDashboard() {
           Bienvenido/a. Aquí podrás acceder a las funcionalidades específicas de tu perfil: Ver información relevante, realizar acciones y estar al tanto de comunicados importantes.
         </p>
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="bg-green-700 p-4 rounded-2xl shadow">
+          <div className="bg-green-700 p-5 rounded-2xl shadow">
             <h2 className="text-xl font-semibold text-sky-100 text-center">Módulo 1</h2>
             <p className="text-sky-100">Funcionalidad relacionada.</p>
           </div>
-          <div className="bg-green-700 p-4 rounded-2xl shadow">
+          <div className="bg-green-700 p-5 rounded-2xl shadow">
             <h2 className="text-xl font-semibold text-sky-100 text-center">Módulo 2</h2>
             <p className="text-sky-100">Otra funcionalidad.</p>
           </div>
