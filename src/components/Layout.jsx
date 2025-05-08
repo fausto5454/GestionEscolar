@@ -69,7 +69,7 @@ function Layout({ children }) {
         transition={{ type: "tween" }}
         className="fixed top-0 left-0 h-full w-64 bg-green-700 text-white p-4 shadow-xl z-40 lg:hidden"
       >
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex items-center mb-6 pt-10">
           <h2 className="text-2xl font-bold">Gestión Escolar</h2>
         </div>
 
@@ -151,7 +151,7 @@ function Layout({ children }) {
         </Link>
       </motion.aside>
 
-      <main className="flex-1 p-2 bg-gray-50">{children}</main>
+      <main className="flex-1 p-0 bg-gray-50">{children}</main>
     </div>
   );
 }
